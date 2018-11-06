@@ -1,7 +1,6 @@
-## Put comments here that give an overall description of what your
-## functions do
-
-## Write a short comment describing this function
+## Create an enhanced version of given matrix 'x'. The returned version is able
+## to remember the previous inverse matrix of 'x'. Note that, matrix changes
+## caused by calling 'set' will clean the remembered inverse matrix.
 
 makeCacheMatrix <- function(x = matrix()) {
     inversed <- NULL
@@ -16,17 +15,18 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
+## Return a matrix that is the inverse of 'x'(which is produced by
+## 'makeCacheMatrix'). The computation will only occur if the inverse matrix is
+## not computed yet.
 
-cacheSolve <- function(x) {
-        ## Return a matrix that is the inverse of 'x'
+cacheSolve <- function(x, ...) {
     i <- x$getinversed()
     if (!is.null(i)) {
         message("Getting cached data")
         return(i)
     }
     data <- x$get()
-    i <- solve(data)
+    i <- solve(data, ...)
     x$setinversed(i)
     i
 }
